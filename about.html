@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <title>About · Hello, World!</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f8f7ff; --muted:#b7b6ce; --violet:#a997ff; --cyan:#74e4dc; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(ellipse at 18% 20%,#493b8b66 0,transparent 38%),radial-gradient(ellipse at 84% 78%,#147d8060 0,transparent 38%),linear-gradient(135deg,#101323,#17182b 55%,#101b28); }
+    .site-header { width:min(1100px,90vw); margin:auto; padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+    .brand { color:var(--ink); text-decoration:none; font-weight:800; letter-spacing:-.04em; font-size:1.1rem; }
+    .brand span { color:var(--cyan); }
+    nav { display:flex; gap:.5rem; }
+    nav a { padding:.65rem .9rem; border-radius:999px; color:var(--muted); text-decoration:none; font-size:.9rem; transition:background .2s,color .2s; }
+    nav a:hover, nav a[aria-current="page"] { color:var(--ink); background:#ffffff12; }
+    main { width:min(900px,90vw); margin:clamp(2rem,8vh,6rem) auto 5rem; padding:clamp(2.25rem,7vw,5rem); border:1px solid #ffffff20; border-radius:28px; background:linear-gradient(145deg,#ffffff12,#ffffff06); box-shadow:0 30px 100px #00000045,inset 0 1px #ffffff18; backdrop-filter:blur(18px); animation:arrive 800ms cubic-bezier(.2,.8,.2,1) both; }
+    .eyebrow { margin:0 0 1.2rem; color:#d7d2ff; font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(3rem,9vw,6.5rem); line-height:.98; letter-spacing:-.075em; }
+    h1 span { color:transparent; background:linear-gradient(100deg,#c5b7ff 10%,#83e8df 90%); background-clip:text; -webkit-background-clip:text; }
+    .lead { max-width:42rem; margin:1.5rem 0 0; color:var(--muted); font-size:clamp(1.05rem,2vw,1.2rem); line-height:1.8; }
+    .rule { width:3.5rem; height:2px; margin:2.2rem 0; border-radius:2px; background:linear-gradient(90deg,var(--violet),var(--cyan)); box-shadow:0 0 18px #74e4dc88; }
+    .details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .detail { padding:1.25rem; border:1px solid #ffffff13; border-radius:18px; background:#ffffff08; }
+    .detail h2 { margin:0 0 .55rem; font-size:1rem; }
+    .detail p { margin:0; color:var(--muted); font-size:.95rem; line-height:1.7; }
+    footer { padding:0 1rem 1.5rem; text-align:center; color:#a7a8bf88; font-size:.75rem; letter-spacing:.08em; }
+    @keyframes arrive { from{opacity:0;transform:translateY(18px) scale(.985)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @media(max-width:600px) { .site-header{align-items:flex-start;flex-direction:column} nav{width:100%;justify-content:space-between} nav a{padding:.6rem .65rem} .details{grid-template-columns:1fr} main{margin-top:2rem} }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important} }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="hello-world.html">Hello<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="hello-world.html">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <p class="eyebrow">The story behind the start</p>
+    <h1>A small page.<br><span>A big beginning.</span></h1>
+    <p class="lead">Hello, World! is a simple celebration of getting started. This little corner of the web is here to welcome curious minds, fresh ideas, and whatever comes next.</p>
+    <div class="rule" aria-hidden="true"></div>
+    <section class="details" aria-label="What this page is about">
+      <article class="detail"><h2>Made for curiosity</h2><p>Explore, experiment, and follow the ideas that make you wonder.</p></article>
+      <article class="detail"><h2>Built to begin</h2><p>There’s no perfect moment to start. Sometimes one small step is the whole point.</p></article>
+    </section>
+  </main>
+  <footer>MADE OF CURIOSITY · EST. RIGHT NOW</footer>
+</body>
+</html>

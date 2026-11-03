@@ -14,6 +14,12 @@
       --cyan: #74e4dc;
     }
     * { box-sizing: border-box; }
+    .site-header { position: fixed; z-index: 2; top: 0; left: 0; width: 100%; padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .brand { color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.1rem; }
+    .brand span { color: var(--cyan); }
+    nav { display: flex; gap: .5rem; }
+    nav a { padding: .65rem .9rem; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: .9rem; transition: background .2s, color .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: var(--ink); background: #ffffff12; }
     body {
       min-height: 100vh;
       margin: 0;
@@ -39,7 +45,9 @@
     body::before { transform: translate(-38vw, -32vh); box-shadow: 0 0 0 4rem #ffffff05, 0 0 0 8rem #ffffff03; }
     body::after { transform: translate(40vw, 37vh); box-shadow: 0 0 0 4rem #ffffff05, 0 0 0 8rem #ffffff03; }
     main {
+      margin-top: 4rem;
       width: min(90vw, 760px);
+      margin-top: 4rem;
       padding: clamp(2.5rem, 8vw, 5.5rem) 2rem;
       text-align: center;
       border: 1px solid #ffffff20;
@@ -105,12 +113,21 @@
       from { opacity: 0; transform: translateY(18px) scale(.985); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
+    @media (max-width: 600px) { .site-header { align-items: flex-start; flex-direction: column; } nav { width: 100%; justify-content: space-between; } nav a { padding: .6rem .65rem; } }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a class="brand" href="hello-world.html">Hello<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="hello-world.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
   <main>
     <div class="eyebrow"><span class="spark">✦</span> A little something to begin</div>
     <h1>Hello,<span>World!</span></h1>
@@ -120,3 +137,5 @@
   <footer>MADE OF CURIOSITY · EST. RIGHT NOW</footer>
 </body>
 </html>
+
+
