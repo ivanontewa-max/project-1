@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <title>Gallery · Hello, World!</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f8f7ff; --muted:#b7b6ce; --violet:#a997ff; --cyan:#74e4dc; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(ellipse at 18% 20%,#493b8b66 0,transparent 38%),radial-gradient(ellipse at 84% 78%,#147d8060 0,transparent 38%),linear-gradient(135deg,#101323,#17182b 55%,#101b28); }
+    .site-header { width:min(1100px,90vw); margin:auto; padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+    .brand { color:var(--ink); text-decoration:none; font-weight:800; letter-spacing:-.04em; font-size:1.1rem; }
+    .brand span { color:var(--cyan); }
+    nav { display:flex; gap:.5rem; }
+    nav a { padding:.65rem .9rem; border-radius:999px; color:var(--muted); text-decoration:none; font-size:.9rem; transition:background .2s,color .2s; }
+    nav a:hover, nav a[aria-current="page"] { color:var(--ink); background:#ffffff12; }
+    main { width:min(1100px,90vw); margin:clamp(2rem,7vh,5rem) auto 5rem; animation:arrive 800ms cubic-bezier(.2,.8,.2,1) both; }
+    .intro { margin-bottom:2rem; }
+    .eyebrow { margin:0 0 1rem; color:#d7d2ff; font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(3rem,8vw,6rem); line-height:.98; letter-spacing:-.075em; }
+    h1 span { color:transparent; background:linear-gradient(100deg,#c5b7ff 10%,#83e8df 90%); background-clip:text; -webkit-background-clip:text; }
+    .lead { max-width:42rem; margin:1.2rem 0 0; color:var(--muted); font-size:1.05rem; line-height:1.8; }
+    .gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+    .art-card { overflow:hidden; border:1px solid #ffffff20; border-radius:22px; background:linear-gradient(145deg,#ffffff12,#ffffff06); box-shadow:0 20px 55px #00000025; transition:transform .25s,border-color .25s; }
+    .art-card:hover { transform:translateY(-5px); border-color:#ffffff40; }
+    .art { position:relative; min-height:220px; overflow:hidden; isolation:isolate; }
+    .art::before,.art::after { content:""; position:absolute; border-radius:50%; }
+    .art .orb { position:absolute; width:140px; height:140px; left:50%; top:50%; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#e8c6ff,#9076ed 55%,#5c58b7); box-shadow:0 0 70px #c7aaff55; }
+    .art.dawn { background:radial-gradient(ellipse at 50% 100%,#ffab8960,transparent 55%),linear-gradient(145deg,#34295b,#161a37); }
+    .art.dawn::before { width:260px;height:100px;bottom:-48px;left:-20px;background:#9285d955;transform:rotate(-12deg); }
+    .art.dawn::after { width:240px;height:90px;bottom:-52px;right:-35px;background:#5a8eaa66;transform:rotate(12deg); }
+    .art.tide { background:radial-gradient(ellipse at 50% 0%,#78e4dc55,transparent 55%),linear-gradient(145deg,#102b42,#17203d); }
+    .art.tide .orb { width:120px;height:120px;background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#9df5df,#49b8c0 55%,#4b68af); }
+    .art.tide::before { width:280px;height:110px;bottom:-62px;left:-20px;background:#45b8c188;transform:rotate(-8deg); }
+    .art.tide::after { width:250px;height:90px;bottom:-58px;right:-25px;background:#544fa888;transform:rotate(10deg); }
+    .art.bloom { background:radial-gradient(ellipse at 50% 50%,#da8bbf44,transparent 52%),linear-gradient(145deg,#422745,#1d1a38); }
+    .art.bloom .orb { width:100px;height:100px;background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#ffd29d,#ee8bb7 55%,#9c72dd); }
+    .art.bloom::before { width:80px;height:200px;left:calc(50% - 40px);top:10px;background:#e995cb55;transform:rotate(55deg); }
+    .art.bloom::after { width:80px;height:200px;left:calc(50% - 40px);top:10px;background:#b293f055;transform:rotate(-55deg); }
+    .art.night { background:radial-gradient(ellipse at 20% 20%,#a997ff44,transparent 45%),linear-gradient(145deg,#252348,#101626); }
+    .art.night .orb { width:112px;height:112px;background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#d9e2ff,#9194d8 55%,#5869a9); box-shadow:0 0 65px #a997ff55; }
+    .art.night::before { width:5px;height:5px;left:20%;top:25%;background:#fff;box-shadow:70px 35px #fff,175px -3px #fff,270px 70px #fff,90px 150px #fff,225px 165px #fff; }
+    .art.ember { background:radial-gradient(ellipse at 50% 100%,#ff9d5b55,transparent 52%),linear-gradient(145deg,#462a42,#1e1831); }
+    .art.ember .orb { width:125px;height:125px;background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#ffe38e,#f49a70 55%,#d66ba3); box-shadow:0 0 75px #ffab8955; }
+    .art.ember::before { width:280px;height:90px;bottom:-45px;left:-20px;background:#b7639266;transform:rotate(10deg); }
+    .art.ember::after { width:240px;height:80px;bottom:-50px;right:-25px;background:#835baf66;transform:rotate(-12deg); }
+    .art.drift { background:radial-gradient(ellipse at 80% 20%,#74e4dc44,transparent 45%),linear-gradient(145deg,#1e3850,#1c1b3c); }
+    .art.drift .orb { width:115px;height:115px;background:radial-gradient(circle at 35% 30%,#fff9,#ffffff00 40%),linear-gradient(140deg,#d4fff0,#85d7d4 55%,#6986c9); }
+    .caption { padding:1rem 1.1rem 1.2rem; }
+    .caption h2 { margin:0 0 .35rem; font-size:1rem; }
+    .caption p { margin:0; color:var(--muted); font-size:.88rem; line-height:1.6; }
+    footer { padding:0 1rem 1.5rem; text-align:center; color:#a7a8bf88; font-size:.75rem; letter-spacing:.08em; }
+    @keyframes arrive { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    @media(max-width:760px) { .gallery{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media(max-width:600px) { .site-header{align-items:flex-start;flex-direction:column} nav{width:100%;justify-content:space-between;gap:0} nav a{padding:.6rem .5rem;font-size:.82rem} .gallery{grid-template-columns:1fr} .art{min-height:200px} }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important} }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Hello<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Little worlds in color</p>
+      <h1>A place to<br><span>explore.</span></h1>
+      <p class="lead">A collection of abstract moments, made from light, color, and a little imagination.</p>
+    </section>
+    <section class="gallery" aria-label="Artwork gallery">
+      <article class="art-card"><div class="art dawn" role="img" aria-label="Abstract lavender sun rising over layered hills"></div><div class="caption"><h2>First Light</h2><p>A soft start to a brand-new day.</p></div></article>
+      <article class="art-card"><div class="art tide" role="img" aria-label="Abstract turquoise moon above rolling ocean waves"></div><div class="caption"><h2>Quiet Tide</h2><p>Somewhere between sky and sea.</p></div></article>
+      <article class="art-card"><div class="art bloom" role="img" aria-label="Abstract pink and violet flower made of overlapping petals"></div><div class="caption"><h2>In Bloom</h2><p>Color finding its way into the world.</p></div></article>
+      <article class="art-card"><div class="art night" role="img" aria-label="Pale moon and scattered stars in a deep blue night sky"></div><div class="caption"><h2>After Hours</h2><p>A little quiet beneath the stars.</p></div></article>
+      <article class="art-card"><div class="art ember" role="img" aria-label="Warm glowing amber sun over soft rose-colored shapes"></div><div class="caption"><h2>Golden Hour</h2><p>Hold onto the glow a little longer.</p></div></article>
+      <article class="art-card"><div class="art drift" role="img" aria-label="Mint-colored planet floating in a blue and violet atmosphere"></div><div class="caption"><h2>Slow Drift</h2><p>Let your thoughts wander for a while.</p></div></article>
+    </section>
+  </main>
+  <footer>MADE OF CURIOSITY · EST. RIGHT NOW</footer>
+</body>
+</html>
